@@ -1,85 +1,25 @@
 require("which-key").setup({
     preset = "modern",
-    delay = 300,
-    triggers_blacklist = {
-        n = { '"' },
+    delay = 200,
+
+    -- This is the key part - which-key should NEVER trigger in insert mode
+    modes = {
+        n = true,  -- Normal mode
+        v = true,  -- Visual mode
+        o = true,  -- Operator pending
+        i = false, -- INSERT MODE - explicitly disable
+        c = false, -- Command line
     },
 
-    -- Beautiful window configuration
     win = {
-        border = "rounded",
-        padding = { 1, 2 }, -- Slightly more padding for better readability
-        title = true,
-        title_pos = "center",
-        zindex = 1000,
-
-        -- Modern styling with subtle transparency
-        wo = {
-            winblend = 15, -- Subtle transparency
-        },
+        border = "single",
+        wo = { winblend = 0 },
     },
 
-    -- Optimized layout
-    layout = {
-        width = { min = 20, max = 50 },
-        spacing = 4, -- More breathing room
-        align = "left",
-    },
-
-    -- Premium icons with visual hierarchy
     icons = {
-        breadcrumb = "»",
-        separator = "➜",
-        group = "+",
-        ellipsis = "…",
-
-        mappings = true,
-        rules = {},
-        colors = true,
-
-        keys = {
-            Up = " ",
-            Down = " ",
-            Left = " ",
-            Right = " ",
-            C = "󰘴 ",
-            M = "󰘵 ",
-            D = "󰘳 ",
-            S = "󰘶 ",
-            CR = "󰌑 ",
-            Esc = "󱊷 ",
-            ScrollWheelDown = "󱕐 ",
-            ScrollWheelUp = "󱕑 ",
-            NL = "󰌑 ",
-            BS = "󰁮 ",
-            Space = "󱁐 ",
-            Tab = "󰌒 ",
-            F1 = "󱊫 ",
-            F2 = "󱊬 ",
-            F3 = "󱊭 ",
-            F4 = "󱊮 ",
-            F5 = "󱊯 ",
-            F6 = "󱊰 ",
-            F7 = "󱊱 ",
-            F8 = "󱊲 ",
-            F9 = "󱊳 ",
-            F10 = "󱊴 ",
-            F11 = "󱊵 ",
-            F12 = "󱊶 ",
-        },
-    },
-
-    show_help = true,
-    show_keys = true,
-
-    disable = {
-        ft = {},
-        bt = {},
+        mappings = false, -- Disable for performance
     },
 })
-
-
-
 -- ============================================
 -- Which-Key Configuration
 -- Clean, organized keymaps for better workflow

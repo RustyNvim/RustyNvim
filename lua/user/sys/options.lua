@@ -15,7 +15,8 @@ o.shiftwidth = 4
 o.tabstop = 4
 o.smartindent = true
 vim.opt.softtabstop = 4
-vim.opt.clipboard = "" -- WARN: let it be as It is Otherwise it can destroy the registers of neovim & a lot of nvrush features.
+vim.opt.clipboard =
+"" -- WARN: let it be as It is Otherwise it can destroy the registers of neovim & a lot of nvrush features.
 vim.cmd("filetype plugin indent on")
 -- Minimal custom tabline: show current file + indicator for more tabs
 vim.o.showtabline = 2
@@ -26,7 +27,7 @@ vim.o.showtabline = 2
 vim.opt.timeoutlen = 200
 vim.opt.updatetime = 100
 vim.opt.ttimeoutlen = 10
-vim.opt.lazyredraw = false -- keep off 
+vim.opt.lazyredraw = false -- keep off
 vim.opt.ttyfast = true
 
 vim.opt.incsearch = true
@@ -63,4 +64,3 @@ vim.g.maplocalleader = "'"
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
-

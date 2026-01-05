@@ -12,36 +12,37 @@ require('blink.cmp').setup({
 
         -- Beautiful custom icons
         kind_icons = {
-            Text          = "󰰥",
+            Text          = "󰉿",
             Method        = "󰆧",
-            Function      = "󰯺",
+            Function      = "󰊕",
             Constructor   = "󰆧",
 
             Field         = "󰜢",
-            Variable      = "󱃻",
+            Variable      = "󰀫",
             Property      = "󰜢",
-            Constant      = "󰯷",
+            Constant      = "󰏿",
 
             Class         = "󰠱",
             Struct        = "󰙅",
             Interface     = "󰕘",
             Module        = "󰕳",
-            Unit          = "󰑭",
-            Value         = "󰎠",
             Enum          = "󰕘",
             EnumMember    = "󰆔",
-            TypeParameter = "󰰘",
+            TypeParameter = "󰊄",
+
+            Unit          = "󰑭",
+            Value         = "󰎠",
 
             Keyword       = "󰌋",
-            Operator      = "",
-            Snippet       = "",
+            Operator      = "󰆕",
+            Snippet       = "󰘌",
             Event         = "󰌘",
             Reference     = "󰈇",
 
             File          = "󰈙",
             Folder        = "󰉋",
             Color         = "󰏘",
-        }
+        },
     },
 
     completion = {
