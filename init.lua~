@@ -1,0 +1,204 @@
+-- =========================================================
+-- 6. Deferred FLOW execution (COMPLETE + SAFE)
+-- =========================================================
+
+-- Core + system (stages 1–3)
+load_stage(FLOW[1])
+load_stage(FLOW[2])
+load_stage(FLOW[3])
+
+-- UI / visuals (stages 4–7)
+vim.api.nvim_create_autocmd("UIEnter", {
+    once = true,
+    callback = function()
+        for i = 4, 7 do
+            load_stage(FLOW[i])
+        end
+
+        vim.cmd.colorscheme("nightfox")
+    end,
+})
+
+-- LSP + DAP (stages 8–9)
+vim.api.nvim_create_autocmd("BufReadPre", {
+    once = true,
+    callback = function()
+        for i = 8, 9 do
+            load_stage(FLOW[i])
+        end
+    end,
+})
+
+-- IDE + utilities (stages 10–12)
+vim.api.nvim_create_autocmd("VeryLazy", {
+    once = true,
+    callback = function()
+        for i = 10, 12 do
+            load_stage(FLOW[i])
+        end
+    end,
+})
+-- 6. Event-driven execution (KEEP FILES, FIX STARTUP)
+-- =========================================================
+
+-- ────────────────────────────────────────────────────────
+-- Stage 1–3: Core system (safe at startup)
+-- ────────────────────────────────────────────────────────
+load_stage({
+    -- 1. System core override
+    r("uc._itallic0"),
+    r("us.directMap.quit_save"),
+    r("us.directMap.buf_cycle"),
+    r("us.directMap.autopopup_toggle"),
+    r("us.plugins"),
+
+    -- 2. Inbuilt core
+    r("us.inbuilt.last_pos"),
+
+    -- 3. Basic settings
+    r("us.env"),
+    r("us.options"),
+    r("us.mappings"),
+    r("us.autoreload"),
+    r("us.mason"),
+})
+
+-- ────────────────────────────────────────────────────────
+-- Stage 4–7: UI + visuals (after UI is ready)
+-- ────────────────────────────────────────────────────────
+vim.api.nvim_create_autocmd("UIEnter", {
+    once = true,
+    callback = function()
+        load_stage({
+            -- UI Core
+            r("uc._dashboard"),
+            r("uc._diagonasticsigns"),
+            r("uc._ibl"),
+            r("uc._bufferline"),
+            r("uc._statusline"),
+            r("uc._dressing"),
+            r("uc._windows"),
+            r("uc._sgt"),
+            r("uc._notify"),
+            r("uc._ascii"),
+
+            -- Custom Treesitter visuals
+            r("ucc.ts_file_call"),
+            r("ucc.gruvbox_ts"),
+
+            -- Cherry
+            r("uch.custom_treesitters"),
+            r("uch.gitsigns"),
+            r("uch.theme"),
+            r("uch.colors"),
+
+            -- Mini ecosystem
+            r("um.mini_surround"),
+            r("um.mini_notify"),
+            r("um.mini_icons"),
+            r("um.mini_animate"),
+            r("um.mini_jump"),
+        })
+    end,
+})
+
+-- ────────────────────────────────────────────────────────
+-- Stage 8–9: LSP + DAP (on first real buffer)
+-- ────────────────────────────────────────────────────────
+vim.api.nvim_create_autocmd("BufReadPre", {
+    once = true,
+    callback = function()
+        load_stage({
+            -- High level
+            r("lsp.HighLevel.lua_ls"),
+            r("lsp.HighLevel.pyright"),
+
+            -- Low level
+            r("lsp.LowLevel.asm"),
+            r("lsp.LowLevel.clang"),
+            r("lsp.LowLevel.cmake"),
+            r("lsp.LowLevel.rust_analyzer"),
+            r("lsp.LowLevel.zls"),
+
+            -- Productive
+            r("lsp.Productive.bash_ls"),
+            r("lsp.Productive.marksman"),
+            r("lsp.Productive.vimls"),
+
+            -- Utilities
+            r("lsp.Utilities.dockerls"),
+            r("lsp.Utilities.jsonls"),
+            r("lsp.Utilities.yamlls"),
+
+            -- Web
+            r("lsp.Web.css_ls"),
+            r("lsp.Web.gopls"),
+            r("lsp.Web.html"),
+            r("lsp.Web.phpactor"),
+            r("lsp.Web.vtsls"),
+
+            -- GameDev
+            r("lsp.GameDev.Godot_ls"),
+
+            -- Activate
+            r("lb.lsp"),
+
+            -- LSP batch extras
+            r("lb.blinkCmp"),
+            r("lb.goto_preview"),
+            r("lb.autopairs"),
+            r("lb.formatter"),
+            r("lb.luasnip"),
+            r("lb.lspkind"),
+            r("lb.navic"),
+
+            -- DAP
+            r("user.config.Dap.setup"),
+            r("user.config.Dap.keymaps"),
+            r("user.config.Dap.langs.rust"),
+        })
+    end,
+})
+
+-- �
+��───────────────────────────────────────────────────────
+-- Stage 10–12: IDE + utilities (VeryLazy)
+-- ────────────────────────────────────────────────────────
+vim.api.nvim_create_autocmd("VeryLazy", {
+    once = true,
+    callback = function()
+        load_stage({
+            r("ide.code_runner_on_click"),
+            r("ide.nvimtree"),
+            r("ide.telescope"),
+            r("ide.toggleterm"),
+            r("ide.project"),
+            r("ide.sessions"),
+            r("lb.trouble"),
+            r("ide.snipe"),
+            r("ide.todo"),
+            r("ide.whkey"),
+            r("ide.multiselect"),
+            r("ide.treesitter"),
+            r("ide.showkey"),
+            r("ide.surround"),
+            r("ide.arrow"),
+            r("ide.comments"),
+            r("ide.lazygit"),
+            r("ide.flash"),
+            r("ide.undotree"),
+            r("ide.yanky"),
+            r("ide.oil"),
+            r("ide.file_organizer_setup"),
+            r("ide.fold"),
+            r("ide.hydra"),
+
+            -- Inbuilt calls
+            r("ide.call.autosave"),
+            r("ide.call.notific"),
+
+            -- Plugin extensions
+            r("ext.overseer"),
+        })
+    end,
+})
