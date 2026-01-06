@@ -1,4 +1,4 @@
-require("user.config.IdeBatch.inbuilt.autosave").setup({
+require("user.config.IdeBatch.autosave").setup({
     enabled = true,
     allow = { "all" },
     -- disallow = { "c", "cpp" },

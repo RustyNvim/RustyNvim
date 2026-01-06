@@ -121,8 +121,8 @@ local FLOW = {
 
     -- 5. Custom treesitter
     {
-        r("ucc.ts_file_call"),
-        r("ucc.gruvbox_ts"),
+        -- r("ucc.ts_file_call"),
+        -- r("ucc.gruvbox_ts"),
     },
 
     -- 6. Cherry on top
@@ -191,38 +191,18 @@ local FLOW = {
     -- 10. IDE Batch
     {
         r("ide.run"),
-        r("ide.nvimtree"),
-        r("ide.telescope"),
-        r("ide.toggleterm"),
-        r("ide.project"),
         r("ide.sessions"),
-        r("lb.trouble"),
-        r("ide.snipe"),
-        r("ide.todo"),
         r("ide.whkey"),
-        r("ide.multiselect"),
         r("ide.treesitter"),
         r("ide.showkey"),
         r("ide.surround"),
         r("ide.comments"),
         r("ide.lazygit"),
-        r("ide.undotree"),
         r("ide.yanky"),
-        r("ide.oil"),
         r("ide.file_organizer_setup"),
-        r("ide.fold"),
+        r("ide._autosave"),
     },
-
-    -- 11. Inbuilt calls
-    {
-        r("ide.call.autosave"),
-        r("ide.call.notific"),
-    },
-
     -- 12. Plugin extension
-    {
-        r("ext.overseer"),
-    },
 
 }
 

@@ -199,13 +199,24 @@ require("lazy").setup({
             "nvim-tree/nvim-tree.lua",
             version = "v1.14.0",
             cmd = { "NvimTreeToggle", "NvimTreeOpen", "NvimTreeFocus", "NvimTreeFindFile" },
+            keys = {
+                { "<leader>e", "<cmd>NvimTreeToggle<cr>" }
+                ,
+            },
             dependencies = { "nvim-tree/nvim-web-devicons" },
+            config = function()
+                require("user.config.IdeBatch.nvimtree")
+            end
+
         },
         {
             "stevearc/oil.nvim",
             version = "v2.15.0",
             cmd = "Oil",
             dependencies = { "echasnovski/mini.icons" },
+            config = function()
+                require("user.config.IdeBatch.oil")
+            end
         },
 
         -- ===========================
@@ -231,6 +242,10 @@ require("lazy").setup({
                 "debugloop/telescope-undo.nvim",
                 "nvim-telescope/telescope-ui-select.nvim",
             },
+
+            config = function()
+                require("user.config.IdeBatch.telescope")
+            end
         },
 
         -- ===========================
@@ -239,8 +254,11 @@ require("lazy").setup({
         {
             "akinsho/toggleterm.nvim",
             version = "*",
+            keys = {
+                { "<C-x><Space>", "<cmd>ToggleTerm<cr>" },
+            },
             config = function()
-                require("toggleterm").setup()
+                require("user.config.IdeBatch.toggleterm")
             end,
         },
         {
@@ -266,7 +284,14 @@ require("lazy").setup({
             "folke/todo-comments.nvim",
             version = "v1.5.0",
             event = { "BufReadPost", "BufNewFile" },
+            keys = {
+                { "gc", mode = { "n", "v" } },
+                { "gb", mode = { "n", "v" } },
+            },
             cmd = { "TodoTrouble", "TodoTelescope" },
+            config = function()
+                require("user.config.IdeBatch.todo")
+            end
         },
 
         -- ===========================
@@ -280,6 +305,9 @@ require("lazy").setup({
         },
         {
             "leath-dub/snipe.nvim",
+            keys = {
+                { "<leader>sn", function() require("snipe").open() end, { desc = "Snipe Menu" } },
+            },
         },
 
         -- ===========================
@@ -311,6 +339,9 @@ require("lazy").setup({
             keys = {
                 { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Undotree" },
             },
+            config = function()
+                require("user.config.IdeBatch.undotree")
+            end
         },
         {
             "gbprod/yanky.nvim",
@@ -318,8 +349,11 @@ require("lazy").setup({
         },
         {
             "kevinhwang91/nvim-ufo",
-            event = "VeryLazy",
+            event = "BufReadPost",
             dependencies = { "kevinhwang91/promise-async" },
+            config = function()
+                require("user.config.IdeBatch.fold")
+            end
         },
         {
             "nvzone/showkeys",
@@ -336,6 +370,9 @@ require("lazy").setup({
         {
             "stevearc/overseer.nvim",
             cmd = { "OverseerRun", "OverseerToggle", "OverseerInfo" },
+            config = function()
+                require("user.other.extconfig.overseer")
+            end
         },
 
         -- ===========================
@@ -366,7 +403,7 @@ require("lazy").setup({
         },
         {
             "ahmedkhalf/project.nvim",
-            event = "VeryLazy",
+            event = "BufReadPost",
         },
 
         -- ===========================
