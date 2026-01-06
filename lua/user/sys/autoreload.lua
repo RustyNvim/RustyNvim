@@ -1,50 +1,50 @@
--- ~/.config/nvim/lua/user/Basics/autoreload.lua
-local M = {}
-
--- 🔁 Full config reload (manual)
-function M.reload_config()
-    -- Clear all "user.*" modules
-    for name, _ in pairs(package.loaded) do
-        if name:match("^user") then
-            package.loaded[name] = nil
-        end
-    end
-
-    -- Reset lazy.nvim if running
-    if package.loaded["lazy"] then
-        require("lazy").reload()
-    end
-
-    -- Reload init.lua
-    dofile(vim.fn.stdpath("config") .. "/init.lua")
-    vim.notify("✅ Full config reloaded!", vim.log.levels.INFO, { title = "Nvim Config" })
-end
-
--- ⚡ Smart reload on save (auto) for **every buffer**
-vim.api.nvim_create_autocmd("BufWritePost", {
-    pattern = "*", -- Trigger for all files
-    callback = function(opts)
-        local file = opts.file
-
-        -- Only attempt to reload Lua files
-        if not file:match("%.lua$") then return end
-
-        -- Compute module name if it's under ~/.config/nvim/lua/
-        local config_lua_path = vim.fn.stdpath("config") .. "/lua/"
-        if file:sub(1, #config_lua_path) ~= config_lua_path then return end
-
-        local relpath = file:sub(#config_lua_path + 1)
-        local modname = relpath:gsub("%.lua$", ""):gsub("/", ".")
-
-        -- Clear cache and reload
-        package.loaded[modname] = nil
-        local ok, err = pcall(require, modname)
-        if ok then
-            vim.notify("🔄 Reloaded " .. modname, vim.log.levels.INFO, { title = "Nvim Config" })
-        else
-            vim.notify("❌ Error reloading " .. modname .. "\n\n" .. err, vim.log.levels.ERROR, { title = "Nvim Config" })
-        end
-    end,
-})
-
-return M
+-- -- ~/.config/nvim/lua/user/Basics/autoreload.lua
+-- local M = {}
+--
+-- -- 🔁 Full config reload (manual)
+-- function M.reload_config()
+--     -- Clear all "user.*" modules
+--     for name, _ in pairs(package.loaded) do
+--         if name:match("^user") then
+--             package.loaded[name] = nil
+--         end
+--     end
+--
+--     -- Reset lazy.nvim if running
+--     if package.loaded["lazy"] then
+--         require("lazy").reload()
+--     end
+--
+--     -- Reload init.lua
+--     dofile(vim.fn.stdpath("config") .. "/init.lua")
+--     vim.notify("✅ Full config reloaded!", vim.log.levels.INFO, { title = "Nvim Config" })
+-- end
+--
+-- -- ⚡ Smart reload on save (auto) for **every buffer**
+-- vim.api.nvim_create_autocmd("BufWritePost", {
+--     pattern = "*", -- Trigger for all files
+--     callback = function(opts)
+--         local file = opts.file
+--
+--         -- Only attempt to reload Lua files
+--         if not file:match("%.lua$") then return end
+--
+--         -- Compute module name if it's under ~/.config/nvim/lua/
+--         local config_lua_path = vim.fn.stdpath("config") .. "/lua/"
+--         if file:sub(1, #config_lua_path) ~= config_lua_path then return end
+--
+--         local relpath = file:sub(#config_lua_path + 1)
+--         local modname = relpath:gsub("%.lua$", ""):gsub("/", ".")
+--
+--         -- Clear cache and reload
+--         package.loaded[modname] = nil
+--         local ok, err = pcall(require, modname)
+--         if ok then
+--             vim.notify("🔄 Reloaded " .. modname, vim.log.levels.INFO, { title = "Nvim Config" })
+--         else
+--             vim.notify("❌ Error reloading " .. modname .. "\n\n" .. err, vim.log.levels.ERROR, { title = "Nvim Config" })
+--         end
+--     end,
+-- })
+--
+-- return M

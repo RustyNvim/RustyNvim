@@ -48,9 +48,9 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<leader>xa', '<cmd>lua toggle_main_terminal()<CR>', opts)
 vim.keymap.set('t', '<leader>xa', '<cmd>lua toggle_main_terminal()<CR>', opts)
 
+vim.keymap.set('n', '<C-x><Space>', '<cmd>lua toggle_main_terminal()<CR>', opts)
 -- Ctrl + Space mapping
-vim.keymap.set('n', '<C-Space>', '<cmd>lua toggle_main_terminal()<CR>', opts)
-vim.keymap.set('t', '<C-Space>', '<cmd>lua toggle_main_terminal()<CR>', opts)
+vim.keymap.set('t', '<C-x><Space>', '<cmd>lua toggle_main_terminal()<CR>', opts)
 
 -- Additional terminal mode mappings for better control
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], opts) -- Escape to normal mode in terminal

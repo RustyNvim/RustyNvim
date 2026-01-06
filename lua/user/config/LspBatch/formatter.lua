@@ -141,6 +141,11 @@ vim.keymap.set("n", "Fu", format_file, {
     noremap = true,
     silent = true
 })
+vim.keymap.set("n", "<C-x>f", format_file, {
+    desc = "Format file with conform",
+    noremap = true,
+    silent = true
+})
 
 -- Also support visual mode formatting
 vim.keymap.set("v", "<leader>ffp", function()
