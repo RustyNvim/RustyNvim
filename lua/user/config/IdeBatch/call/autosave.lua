@@ -6,7 +6,7 @@ require("user.config.IdeBatch.inbuilt.autosave").setup({
     mode = "n",
 
     -- NEW: Advanced options
-    format_on_save = true,       -- Auto-format with Conform/LSP
+    format_on_save = false,      -- Auto-format with Conform/LSP
     reload_diagnostics = true,   -- Refresh diagnostics
     debounce = true,             -- Prevent rapid-fire saves
     notify = false,              -- Show save notifications (off by default)

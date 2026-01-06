@@ -332,6 +332,10 @@ function M.setup(opts)
         desc = "Toggle Autosave",
         silent = true
     })
+    vim.keymap.set("n", "Ft", M.toggle_format, {
+        desc = "Qucik Formattting Toggle",
+        silent = true
+    })
 
     vim.keymap.set("n", "<leader>as", M.toggle, {
         desc = "Toggle Autosave",

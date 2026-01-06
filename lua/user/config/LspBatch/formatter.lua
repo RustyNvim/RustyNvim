@@ -79,24 +79,28 @@ require("conform").setup({
         },
     },
 
-    -- Format on save (will be controlled by toggle)
-    format_on_save = function(bufnr)
-        -- Disable autoformat on certain filetypes
-        -- local disable_filetypes = { c = true, cpp = true }
-        -- if disable_filetypes[vim.bo[bufnr].filetype] then
-        --   return
-        -- end
-        --
-        -- Check if formatter is enabled
-        if not vim.g.conform_enabled then
-            return
-        end
+    -- This is risky due to its implicity so please use format_on_save = nil , instead.
+    -- -- Format on save (will be controlled by toggle)
+    -- format_on_save = function(bufnr)
+    --     -- Disable autoformat on certain filetypes
+    --     local disable_filetypes = { c = true, cpp = true }
+    --     if disable_filetypes[vim.bo[bufnr].filetype] then
+    --         return
+    --     end
+    --
+    --     -- Check if formatter is enabled
+    --     if not vim.g.conform_enabled then
+    --         return
+    --     end
+    --
+    --     return {
+    --         timeout_ms = 500,
+    --         lsp_fallback = true
+    --     }
+    -- end,
 
-        return {
-            timeout_ms = 500,
-            lsp_fallback = true
-        }
-    end,
+    -- Safest Explicit control via the F literal key in Normal configured in --> ./inbuilt/autosave.lua
+    format_on_save = nil,
 })
 
 -- Global variable to track formatter state (enabled by default)
@@ -132,14 +136,14 @@ vim.keymap.set("n", "<Leader>ffo", toggle_conform, {
     silent = true
 })
 
-vim.keymap.set("n", "<Leader>ffp", format_file, {
+vim.keymap.set("n", "Fu", format_file, {
     desc = "Format file with conform",
     noremap = true,
     silent = true
 })
 
 -- Also support visual mode formatting
-vim.keymap.set("v", "<Leader>ffp", function()
+vim.keymap.set("v", "<leader>ffp", function()
     if vim.g.conform_enabled then
         require("conform").format({
             async = false,
