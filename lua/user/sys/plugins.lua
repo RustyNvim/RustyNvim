@@ -62,6 +62,7 @@ require("lazy").setup({
             event = "InsertEnter",
             dependencies = {
                 "rafamadriz/friendly-snippets",
+                "archie-judd/blink-cmp-words",
             },
         },
         -- CMP dependencies (if you're using nvim-cmp alongside blink)

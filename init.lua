@@ -156,6 +156,7 @@ local FLOW = {
         -- Productive
         r("lsp.Productive.bash_ls"),
         r("lsp.Productive.marksman"),
+        r("lsp.Productive.vale"),
         r("lsp.Productive.vimls"),
         -- Utilities
         r("lsp.Utilities.dockerls"),
