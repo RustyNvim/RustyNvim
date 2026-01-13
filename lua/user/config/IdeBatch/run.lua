@@ -1,7 +1,7 @@
 -- run.lua
 
 -- Load the terminal module directly
-local FloatingTerminal = require("user.config.IdeBatch.toggleterm")
+local FloatingTerminal = require("user.config.IdeBatch.dustTerm")
 
 local RUNNER_ID = "code_runner"
 
@@ -59,7 +59,7 @@ vim.keymap.set("n", "<leader>xz", function()
 end, { silent = true })
 
 
-local term = require("user.config.IdeBatch.toggleterm")
+local term = require("user.config.IdeBatch.dustTerm")
 _G.FloatingTerminal = term
 
 -- Default terminal toggle

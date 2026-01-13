@@ -1,4 +1,4 @@
-# ✨ RustyNvim
+# ✨ DustNvim
 
 **The 105 Kbs Rust-focused IDE that actually works for all**  
 Fully FOSS · Lightning-fast · Zero headaches
@@ -36,7 +36,7 @@ Fully FOSS · Lightning-fast · Zero headaches
 
 ---
 
-## ⚡ The RustyNvim difference
+## ⚡ The DustNvim difference
 
 **Zero friction development**
 - Only 105 KBS !
@@ -78,7 +78,7 @@ Fully FOSS · Lightning-fast · Zero headaches
 
 ```bash
 mkdir -p ~/.config/nv && cd ~/.config/nv
-git clone https://github.com/RustyNvim/RustyNvim.git .
+git clone https://github.com/visrust/DustNvim.git .
 NVIM_APPNAME=nv nvim
 ```
 

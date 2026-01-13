@@ -212,7 +212,7 @@ local FLOW = {
         r('ide.comments'),
         r('ide.lazygit'),
         r('ide.undotree'),
-        r('ide.toggleterm'),
+        r('ide.dustTerm'),
         r('ide.oil'),
         r('ide.neoscroll'),
         r('ide.fold'),
