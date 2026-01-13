@@ -7,7 +7,7 @@ local diagnostics_state = {
     signs = true,
     underline = true,
     auto_popup = true,
-    update_in_insert = true,
+    update_in_insert = false,
 }
 
 -- Apply diagnostic configuration

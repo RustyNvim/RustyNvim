@@ -1,10 +1,9 @@
 -- For the sake of humanity and my mental health please don not touch any settings.
-vim.api.nvim_create_autocmd("InsertLeave", {
-    buffer = bufnr,
-    callback = function()
-        vim.diagnostic.show(nil, bufnr)
-    end,
-})
+-- vim.api.nvim_create_autocmd("InsertLeave", {
+--   callback = function()
+--     vim.diagnostic.show(nil, 0)
+--   end,
+-- })
 require('lspconfig').ts_ls.setup({
     settings = {
         typescript = {

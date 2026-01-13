@@ -1,6 +1,5 @@
 -- Snipe.nvim - Maxed Out
 local snipe = require("snipe")
-
 local columns = vim.o.columns
 local lines = vim.o.lines
 
@@ -20,8 +19,8 @@ snipe.setup({
     },
     ui = {
         position = "center",
-        width = math.floor(columns * 7),    -- 70% of terminal width
-        max_height = math.floor(lines * 7), -- 70% of terminal height
+        width = 40,    -- 70% of terminal width
+        max_height = 10, -- 70% of terminal height
         border = "rounded",
         show_numbers = true,
         show_icons = true,
@@ -35,16 +34,8 @@ local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- Open Snipe buffer menu
-map("n", "<leader>gB", snipe.open_buffer_menu, vim.tbl_extend("force", opts, { desc = "Snipe: Open buffer menu" }))
+map("n", "<leader>sb", snipe.open_buffer_menu, vim.tbl_extend("force", opts, { desc = "Snipe: Open buffer menu" }))
 
--- Quickly jump to recent buffers (numbers 1-5)
-for i = 1, 5 do
-    map("n", "<leader>gS" .. i, function()
-        snipe.open_buffer_menu()
-        snipe.select_item(i)
-    end, vim.tbl_extend("force", opts, { desc = "Snipe: Jump to buffer " .. i }))
-end
-
-map("n", "<leader>gD", function()
+map("n", "<leader>sd", function()
     snipe.open_buffer_menu()
 end, vim.tbl_extend("force", opts, { desc = "Snipe: Open buffer menu to delete" }))
