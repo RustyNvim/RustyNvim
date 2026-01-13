@@ -99,7 +99,7 @@ local function setup_terminal_keymaps(term)
   end, { buffer = buf })
 
   -- Enter terminal-normal mode with Ctrl+Space (then you can use leader keys)
-  vim.keymap.set("t", "<C-Space>", "<C-\\><C-n>", { buffer = buf, desc = "Enter terminal normal mode" })
+  vim.keymap.set("t", "<M-Space>", "<C-\\><C-n>", { buffer = buf, desc = "Enter terminal normal mode" })
   
   -- Quick back to insert mode from normal mode in terminal buffer
   vim.keymap.set("n", "i", "i", { buffer = buf })
