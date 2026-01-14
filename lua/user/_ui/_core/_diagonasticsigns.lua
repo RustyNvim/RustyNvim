@@ -1,4 +1,5 @@
 -- Smart and toggleable diagnostic configuration for Neovim
+-- Universal solution for ALL LSP servers
 
 -- Create augroup for cleanup
 local diagnostic_group = vim.api.nvim_create_augroup("CustomDiagnostics", { clear = true })
@@ -217,5 +218,129 @@ vim.api.nvim_create_autocmd({ "DiagnosticChanged", "BufEnter" }, {
     end,
 })
 
--- REMOVED the problematic LspAttach autocmd entirely
--- LSP diagnostics update automatically, no manual triggering needed
+-- ============================================================================
+-- UNIVERSAL LSP DIAGNOSTIC HANDLER
+-- Works with ALL LSP servers: rust-analyzer, tsserver, pyright, lua_ls, etc.
+-- ============================================================================
+
+-- Track buffers that have LSP attached to avoid duplicate autocmds
+local lsp_attached_buffers = {}
+
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = diagnostic_group,
+    callback = function(args)
+        local bufnr = args.buf
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        
+        if not client then return end
+        
+        -- Skip if we've already set up this buffer
+        if lsp_attached_buffers[bufnr] then return end
+        lsp_attached_buffers[bufnr] = true
+        
+        -- Create a unique buffer-local augroup
+        local buf_group_name = "LSPDiagnostics_" .. bufnr
+        local buf_group = vim.api.nvim_create_augroup(buf_group_name, { clear = true })
+        
+        -- Clean up when buffer is deleted
+        vim.api.nvim_create_autocmd("BufDelete", {
+            buffer = bufnr,
+            once = true,
+            callback = function()
+                lsp_attached_buffers[bufnr] = nil
+                pcall(vim.api.nvim_del_augroup_by_name, buf_group_name)
+            end,
+        })
+        
+        -- Only set up refresh triggers if diagnostics are enabled
+        if not diagnostics_state.enabled then return end
+        
+        -- Universal approach: Let LSP handle its own diagnostic timing
+        -- We just ensure the display settings are applied when diagnostics arrive
+        
+        -- Refresh display after leaving insert mode (for all LSPs)
+        vim.api.nvim_create_autocmd("InsertLeave", {
+            group = buf_group,
+            buffer = bufnr,
+            callback = function()
+                if diagnostics_state.enabled and vim.api.nvim_buf_is_valid(bufnr) then
+                    -- Just redraw the existing diagnostics with current settings
+                    -- Don't request new ones - LSP will send them automatically
+                    local ns = vim.diagnostic.get_namespaces()
+                    for _, namespace_id in pairs(ns) do
+                        local diags = vim.diagnostic.get(bufnr, { namespace = namespace_id })
+                        if #diags > 0 then
+                            vim.diagnostic.show(namespace_id, bufnr, diags, {})
+                        end
+                    end
+                end
+            end,
+        })
+        
+        -- Refresh display after saving (for all LSPs)
+        vim.api.nvim_create_autocmd("BufWritePost", {
+            group = buf_group,
+            buffer = bufnr,
+            callback = function()
+                if diagnostics_state.enabled and vim.api.nvim_buf_is_valid(bufnr) then
+                    -- Small delay to let LSP process the save
+                    vim.defer_fn(function()
+                        if vim.api.nvim_buf_is_valid(bufnr) then
+                            local ns = vim.diagnostic.get_namespaces()
+                            for _, namespace_id in pairs(ns) do
+                                local diags = vim.diagnostic.get(bufnr, { namespace = namespace_id })
+                                if #diags > 0 then
+                                    vim.diagnostic.show(namespace_id, bufnr, diags, {})
+                                end
+                            end
+                        end
+                    end, 100)
+                end
+            end,
+        })
+    end,
+})
+
+-- Manual refresh command (works for all LSP servers)
+vim.api.nvim_create_user_command('DiagnosticRefresh', function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    if vim.api.nvim_buf_is_valid(bufnr) then
+        local ns = vim.diagnostic.get_namespaces()
+        for _, namespace_id in pairs(ns) do
+            local diags = vim.diagnostic.get(bufnr, { namespace = namespace_id })
+            vim.diagnostic.show(namespace_id, bufnr, diags, {})
+        end
+        vim.notify('Diagnostics refreshed', vim.log.levels.INFO)
+    end
+end, { desc = 'Force refresh diagnostic display' })
+
+vim.keymap.set('n', '<leader>udr', '<cmd>DiagnosticRefresh<CR>', { desc = 'Refresh Diagnostics' })
+
+-- Optional: Add a command to check LSP diagnostic status
+vim.api.nvim_create_user_command('DiagnosticInfo', function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local clients = vim.lsp.get_clients({ bufnr = bufnr })
+    
+    if #clients == 0 then
+        vim.notify('No LSP clients attached', vim.log.levels.WARN)
+        return
+    end
+    
+    local info = { 'LSP Diagnostic Info:', '' }
+    for _, client in ipairs(clients) do
+        table.insert(info, string.format('Client: %s', client.name))
+        local ns = vim.lsp.diagnostic.get_namespace(client.id)
+        local diags = vim.diagnostic.get(bufnr, { namespace = ns })
+        table.insert(info, string.format('  Diagnostics: %d', #diags))
+    end
+    
+    table.insert(info, '')
+    table.insert(info, string.format('Total diagnostics: %d', #vim.diagnostic.get(bufnr)))
+    table.insert(info, string.format('Enabled: %s', diagnostics_state.enabled))
+    table.insert(info, string.format('Signs: %s', diagnostics_state.signs))
+    table.insert(info, string.format('Underline: %s', diagnostics_state.underline))
+    
+    vim.notify(table.concat(info, '\n'), vim.log.levels.INFO)
+end, { desc = 'Show LSP diagnostic information' })
+
+vim.keymap.set('n', '<leader>udi', '<cmd>DiagnosticInfo<CR>', { desc = 'Diagnostic Info' })

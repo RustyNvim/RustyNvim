@@ -234,7 +234,7 @@ end
 -- =========================================================
 -- 7. Post-init (UI & keymaps)
 -- =========================================================
-vim.cmd.colorscheme('nightfox')
+vim.cmd.colorscheme("nightfox")
 
 vim.keymap.set('n', '<leader>tc', function()
     require('telescope.builtin').find_files({
@@ -242,19 +242,3 @@ vim.keymap.set('n', '<leader>tc', function()
         prompt_title = '< Neovim Config >'
     })
 end, { desc = 'Find config files' })
-
--- Important please don't disturb or can be bad for nvim
-
-vim.api.nvim_create_autocmd('InsertLeave', {
-    group = vim.api.nvim_create_augroup('LspDiagnosticsRefresh', { clear = true }),
-    callback = function()
-        vim.diagnostic.show()
-    end,
-})
-
-vim.api.nvim_create_autocmd('BufWritePost', {
-    group = vim.api.nvim_create_augroup('LspDiagnosticsOnSave', { clear = true }),
-    callback = function()
-        vim.lsp.buf.did_save()
-    end,
-})

@@ -14,7 +14,7 @@ M.config = {
 
     -- Advanced options
     format_on_save = true,       -- Trigger formatting (Conform/LSP)
-    reload_diagnostics = true,   -- Reload diagnostics after save
+    reload_diagnostics = false,   -- Reload diagnostics after save
     debounce = true,             -- Use debouncing to avoid excessive saves
     notify = false,              -- Show notification on autosave
     exclude_ft_from_format = {}, -- Filetypes to skip formatting: {"markdown", "text"}
@@ -193,14 +193,15 @@ local function autosave()
         -- Update last save time
         last_save_time[bufnr] = vim.loop.hrtime()
 
+        -- Keep these commented as they can cause trouble in lsp diagnostic updates 
         -- Reload diagnostics if configured
-        if M.config.reload_diagnostics then
-            vim.defer_fn(function()
-                vim.diagnostic.reset()
-                -- Turn this off to prevent errors in Marksman or Godot
-                -- vim.lsp.buf.document_highlight()
-            end, 50)
-        end
+        -- if M.config.reload_diagnostics then
+        --     vim.defer_fn(function()
+        --         vim.diagnostic.reset()
+        --         -- Turn this off to prevent errors in Marksman or Godot
+        --         -- vim.lsp.buf.document_highlight()
+        --     end, 50)
+        -- end
 
         -- Show notification if configured
         if M.config.notify then
