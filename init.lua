@@ -214,6 +214,8 @@ local FLOW = {
         r('ide.undotree'),
         r('ide.dustTerm'),
         r('ide.oil'),
+        -- nightly feature added on : 16/01/26 (DD/MM/YY)
+        r('ide.notes').setup(),
         r('ide.neoscroll'),
         r('ide.fold'),
         r('ide.yanky'),
