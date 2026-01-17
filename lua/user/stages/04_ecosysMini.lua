@@ -1,0 +1,6 @@
+require('user.ecosys.mini.mini_surround')
+require('user.ecosys.mini.mini_notify')
+require('user.ecosys.mini.mini_icons')
+require('user.ecosys.mini.mini_animate')
+require('user.ecosys.mini.mini_jump')
+require('user.ecosys.mini.mini_pairs')
