@@ -1,0 +1,43 @@
+-- Mason UI setup
+require("mason").setup({
+    ui = {
+        border = "rounded",                 -- match Lazy.nvim style
+        width = 0.8,
+        height = 0.9,
+        icons = {
+            package_installed   = "󰄳", -- nf-md-check
+            package_pending     = "󰌠", -- nf-md-timer_sand
+            package_uninstalled = "󰅙", -- nf-md-close_circle
+        },
+        keymaps = {
+            toggle_package_expand   = "<CR>",
+            install_package         = "i",
+            update_package          = "u",
+            check_package_version   = "c",
+            update_all_packages     = "U",
+            check_outdated_packages = "C",
+            uninstall_package       = "x",
+            cancel_installation     = "<C-c>",
+        },
+    },
+})
+
+-- Optional: match Mason highlight groups with active colorscheme dynamically
+local function set_mason_highlights()
+    local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+    local accent = vim.api.nvim_get_hl(0, { name = "String" })
+    local title  = vim.api.nvim_get_hl(0, { name = "Title" })
+    local fg     = accent.fg or "#89b4fa"
+    local bg     = normal.bg or "#1e1e2e"
+
+    vim.api.nvim_set_hl(0, "MasonHeader", { fg = bg, bg = fg, bold = true })
+    vim.api.nvim_set_hl(0, "MasonHeaderSecondary", { fg = fg, bg = bg, bold = true })
+    vim.api.nvim_set_hl(0, "MasonHighlight", { fg = fg })
+    vim.api.nvim_set_hl(0, "MasonHighlightBlock", { fg = bg, bg = fg, bold = true })
+    vim.api.nvim_set_hl(0, "MasonHighlightBlockBold", { fg = bg, bg = fg, bold = true })
+    vim.api.nvim_set_hl(0, "MasonNormal", { fg = accent.fg or "#cdd6f4", bg = bg })
+end
+
+-- Run immediately and whenever the theme changes
+set_mason_highlights()
+vim.api.nvim_create_autocmd("ColorScheme", { callback = set_mason_highlights })

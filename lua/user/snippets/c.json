@@ -1,0 +1,26 @@
+{
+  "Main Function": {
+    "prefix": "main",
+    "body": [
+      "int main(int argc, char *argv[]) {",
+      "\t$0",
+      "\treturn 0;",
+      "}"
+    ],
+    "description": "Main function"
+  },
+  "Printf": {
+    "prefix": "pf",
+    "body": "printf(\"${1:text}\\n\");$0",
+    "description": "Printf with newline"
+  },
+  "For Loop": {
+    "prefix": "for",
+    "body": [
+      "for (int ${1:i} = 0; ${1:i} < ${2:n}; ${1:i}++) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "For loop"
+  }
+}

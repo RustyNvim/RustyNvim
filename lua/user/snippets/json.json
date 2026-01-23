@@ -1,0 +1,19 @@
+{
+    "json" : {
+    "prefix" : "json",
+    "body" : [
+    "  {",
+    "      \"json\" : {",
+    "      \"prefix\" : \"json\",",
+    "      \"body\" : [",
+    "      \"Json \",",
+    "      \"Json \"",
+    "      ],",
+    "      \"description\" : \"Json\"",
+    "      }",
+    "  }"
+    ],
+    "description" : "Json"
+    }
+}
+
