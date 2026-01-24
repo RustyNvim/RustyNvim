@@ -58,6 +58,9 @@ load_stages()
 -- =========================================================
 -- 3. Post-init
 -- =========================================================
+require('user.ui.core.theme')
+require('user.ui.core.colors')
+
 vim.cmd.colorscheme("nightfox")
 local cl = vim.api.nvim_get_hl(0, { name = "CursorLine" })
 local clr = vim.api.nvim_get_hl(0, { name = "CursorLineNr" })

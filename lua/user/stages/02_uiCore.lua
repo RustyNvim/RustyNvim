@@ -1,5 +1,5 @@
-require('user.ui.core.theme')
-require('user.ui.core.colors')
+-- require('user.ui.core.theme')
+-- require('user.ui.core.colors')
 require('user.ui.core.cokeline')
 require('user.ui.core.statusline')
 require('user.ui.core.itallic0')

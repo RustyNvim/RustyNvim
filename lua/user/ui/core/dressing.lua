@@ -166,12 +166,12 @@ require("dressing").setup({
 })
 
 -- Prompt background + orange border
-vim.api.nvim_set_hl(0, "DressingInputNormal", { bg = "#3c3836", fg = "#ebdbb2" })  -- prompt background + text
-vim.api.nvim_set_hl(0, "DressingInputBorder", { bg = "#3c3836", fg = "#fe8019" })  -- orange border
-
--- Optional: select menu styling
-vim.api.nvim_set_hl(0, "DressingSelectNormal", { bg = "#3c3836", fg = "#ebdbb2" })
-vim.api.nvim_set_hl(0, "DressingSelectBorder", { bg = "#3c3836", fg = "#fe8019" })
-
--- Make sure prompt text is neutral color, not red
-vim.api.nvim_set_hl(0, "DressingInputPrompt", { fg = "#ebdbb2" })  -- text inside prompt
+-- vim.api.nvim_set_hl(0, "DressingInputNormal", { bg = "#3c3836", fg = "#ebdbb2" })  -- prompt background + text
+-- vim.api.nvim_set_hl(0, "DressingInputBorder", { bg = "#3c3836", fg = "#fe8019" })  -- orange border
+--
+-- -- Optional: select menu styling
+-- vim.api.nvim_set_hl(0, "DressingSelectNormal", { bg = "#3c3836", fg = "#ebdbb2" })
+-- vim.api.nvim_set_hl(0, "DressingSelectBorder", { bg = "#3c3836", fg = "#fe8019" })
+--
+-- -- Make sure prompt text is neutral color, not red
+-- vim.api.nvim_set_hl(0, "DressingInputPrompt", { fg = "#ebdbb2" })  -- text inside prompt
