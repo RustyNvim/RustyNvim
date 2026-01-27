@@ -107,6 +107,17 @@ require('lazy').setup({
             config = true,
         },
 
+        -- rust 
+
+        {
+            'saecki/crates.nvim',
+            event = "Bufread Cargo.toml",
+            tag = 'stable',
+            config = function()
+                require('crates').setup()
+            end,
+        },
+
         -- ===========================
         -- Formatting & Diagnostics
         -- ===========================
