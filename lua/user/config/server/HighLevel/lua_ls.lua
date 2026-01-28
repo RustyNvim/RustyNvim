@@ -67,13 +67,37 @@ require('lspconfig').lua_ls.setup({
         ['$/progress'] = function() end,
     },
 
-    capabilities = (function()
-        local capabilities = require('cmp_nvim_lsp').default_capabilities()
-        capabilities.textDocument = capabilities.textDocument or {}
-        capabilities.textDocument.diagnostic = { dynamicRegistration = true, relatedDocumentSupport = false }
-        return capabilities
-    end)(),
+capabilities = (function()
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
 
+  -- enable completion capabilities (blink.cmp compatible)
+  capabilities.textDocument.completion = {
+    dynamicRegistration = false,
+    completionItem = {
+      snippetSupport = true,
+      commitCharactersSupport = true,
+      deprecatedSupport = true,
+      preselectSupport = true,
+      tagSupport = { valueSet = { 1 } },
+      insertReplaceSupport = true,
+      resolveSupport = {
+        properties = {
+          "documentation",
+          "detail",
+          "additionalTextEdits",
+        },
+      },
+    },
+  }
+
+  -- diagnostics (same as your original intent)
+  capabilities.textDocument.diagnostic = {
+    dynamicRegistration = true,
+    relatedDocumentSupport = false,
+  }
+
+  return capabilities
+end)(),
     flags = { debounce_text_changes = 150, allow_incremental_sync = true },
     init_options = { usePlaceholders = false },
 

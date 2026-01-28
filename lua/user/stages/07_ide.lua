@@ -21,6 +21,5 @@ defer('user.config.ide.file.fzf', 100)
 defer('user.config.ide.file.leap', 100)   
 defer('user.config.ide.file.fold', 100)   
 defer('user.config.ide.file.oil', 150)    
-defer('user.config.ide.file.snipe', 150)
 
 require('user.config.ide.ide.comments')

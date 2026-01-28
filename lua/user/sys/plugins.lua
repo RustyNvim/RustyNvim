@@ -64,24 +64,6 @@ require('lazy').setup({
                 'rafamadriz/friendly-snippets',
             },
         },
-        -- CMP dependencies (if you're using nvim-cmp alongside blink)
-        { 'hrsh7th/cmp-nvim-lsp',     lazy = true },
-        { 'hrsh7th/cmp-buffer',       lazy = true },
-        { 'hrsh7th/cmp-path',         lazy = true },
-        { 'hrsh7th/cmp-cmdline',      lazy = true },
-        { 'saadparwaiz1/cmp_luasnip', lazy = true },
-        {
-            'hrsh7th/nvim-cmp',
-            event = 'InsertEnter',
-            dependencies = {
-                'hrsh7th/cmp-nvim-lsp',
-                'hrsh7th/cmp-buffer',
-                'hrsh7th/cmp-path',
-                'hrsh7th/cmp-cmdline',
-                'L3MON4D3/LuaSnip',
-                'saadparwaiz1/cmp_luasnip',
-            },
-        },
 
         -- ===========================
         -- LSP (load on file open)
@@ -90,9 +72,6 @@ require('lazy').setup({
             'neovim/nvim-lspconfig',
             version = 'v2.5.0',
             event = { 'BufReadPre', 'BufNewFile' },
-            dependencies = {
-                'hrsh7th/cmp-nvim-lsp',
-            },
         },
         { 'onsails/lspkind-nvim',   lazy = true },
         {
@@ -124,11 +103,6 @@ require('lazy').setup({
         {
             'stevearc/conform.nvim',
             event = 'BufWritePre',
-        },
-        {
-            'folke/trouble.nvim',
-            branch = 'main',
-            version = 'v3.7.1',
         },
 
         -- ===========================
@@ -295,9 +269,6 @@ require('lazy').setup({
         -- ===========================
         -- Navigation & Movement
         -- ===========================
-        {
-            'leath-dub/snipe.nvim',
-        },
 
         -- ===========================
         -- Utility Features

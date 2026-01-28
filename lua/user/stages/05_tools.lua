@@ -7,7 +7,6 @@ vim.defer_fn(function ()
     require('user.config.tools.formatter')
     require('user.config.tools.luasnip')
     require('user.config.tools.lspkind')
-    require('user.config.tools.trouble')
     require('user.config.tools.navic')
 end, 200)
 
