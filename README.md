@@ -104,18 +104,31 @@ echo "alias nv='NVIM_APPNAME=nv nvim'" >> ~/.zshrc && source ~/.zshrc
 ```
 
 Launch with: `nv`
+### 📦 Dependencies
 
-### External Dependencies
+DustNvim requires some external tools for full functionality:
 
-For the complete experience, install these tools:
+**Essential:**
+- `fzf` - Fuzzy finder
+- `ripgrep` - Fast grep alternative
+- `fd` - Fast find alternative
+- `yazi` - Terminal file manager
+- `lazygit` - Git TUI
+- `git` - Version control
 
+**Install all at once:**
 ```bash
-# Essential (for fuzzy finding and file navigation)
-# Your package manager: apt/pacman/brew/etc.
-install fzf yazi
+# Termux
+pkg install fzf ripgrep fd yazi lazygit git
 
-# Recommended (for enhanced features)
-install lazygit ripgrep fd-find
+# Debian/Ubuntu
+apt install fzf ripgrep fd-find yazi lazygit git
+
+# Arch Linux
+pacman -S fzf ripgrep fd yazi lazygit git
+
+# macOS
+brew install fzf ripgrep fd yazi lazygit git
 ```
 
 ### Uninstall
