@@ -38,3 +38,18 @@ vim.api.nvim_create_autocmd('ColorScheme', {
         })
     end,
 })
+
+vim.api.nvim_create_user_command("GruvboxHard", function()
+  require("gruvbox").setup({ contrast = "hard"  })
+  vim.cmd("colorscheme gruvbox")
+end, {})
+
+vim.api.nvim_create_user_command("GruvboxSoft", function()
+  require("gruvbox").setup({ contrast = "soft"  })
+  vim.cmd("colorscheme gruvbox")
+end, {})
+
+vim.api.nvim_create_user_command("GruvboxDefault", function()
+  require("gruvbox").setup({ contrast = ""  })
+  vim.cmd("colorscheme gruvbox")
+end, {})
