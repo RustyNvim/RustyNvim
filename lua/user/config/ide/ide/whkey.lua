@@ -66,8 +66,8 @@ wk.add({
     -- ===============
     { '<leader>d',   group = 'Diagonastics' },
     { '<leader>dr',  '<Cmd>Trouble diagnostics<CR>',            desc = 'Diagnostics Report' },
-    { 'tn',  '<Cmd>lua vim.diagnostic.goto_next()<CR>', desc = 'Next Diagnostic' },
-    { 'tp',  '<Cmd>lua vim.diagnostic.goto_prev()<CR>', desc = 'Previous Diagnostic' },
+    { 'll',  '<Cmd>lua vim.diagnostic.goto_next()<CR>', desc = 'Next Diagnostic' },
+    { 'hh',  '<Cmd>lua vim.diagnostic.goto_prev()<CR>', desc = 'Previous Diagnostic' },
 
     -- ===============
     -- Git
