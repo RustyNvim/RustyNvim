@@ -195,7 +195,7 @@ end
 -- ============================================================================
 
 -- 1. <leader>ct - Copy most recent yanked item to system clipboard
-vim.keymap.set({'n', 'v'}, '<leader>ct', function()
+vim.keymap.set({'n', 'v'}, '<leader>yt', function()
     -- In visual mode, first yank the selection
     if vim.fn.mode():match('[vV]') then
         vim.cmd('normal! y')
@@ -209,11 +209,11 @@ vim.keymap.set({'n', 'v'}, '<leader>ct', function()
     end
 end, { 
     silent = true, 
-    desc = 'Copy recent yank to clipboard' 
+    desc = 'Recent most Yank to clipboard' 
 })
 
 -- 2. <leader>cp - Open yank picker to select from registers
-vim.keymap.set('n', '<leader>cp', function()
+vim.keymap.set('n', '<leader>yp', function()
     local registers = get_registers()
     
     if #registers == 0 then
@@ -226,11 +226,11 @@ vim.keymap.set('n', '<leader>cp', function()
     end)
 end, { 
     silent = true, 
-    desc = 'Pick register to copy' 
+    desc = 'Pick register to yank to system' 
 })
 
 -- 3. <leader>pp - Paste last copied item from system clipboard
-vim.keymap.set('n', '<leader>pp', function()
+vim.keymap.set('n', '<leader>ppp', function()
     local text = paste_from_system()
     if text and text ~= '' then
         vim.fn.setreg('+', text)
@@ -245,7 +245,7 @@ end, {
 })
 
 -- 4. <leader>pk - Pick from registers and paste to editor
-vim.keymap.set('n', '<leader>pk', function()
+vim.keymap.set('n', '<leader>ppk', function()
     local registers = get_registers()
     
     if #registers == 0 then

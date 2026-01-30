@@ -82,10 +82,6 @@ wk.add({
     -- ===============
     -- LSP
     -- ===============
-    { '<leader>l',   group = 'LSP' },
-    { '<leader>lr',  '<Cmd>LspRestart<CR>',                     desc = 'Restart' },
-    { '<leader>li',  '<Cmd>LspInfo<CR>',                        desc = 'Info' },
-    { '<leader>ll',  '<Cmd>LspLog<CR>',                         desc = 'Log' },
 
     { '<leader>n',   group = 'Notify' },
     { '<leader>nh',  '<Cmd>lua MiniNotify.show_history()<CR>',  desc = 'Notification history' },
@@ -127,31 +123,9 @@ wk.add({
     -- ===============
     -- Replace/Substitute
     -- ===============
-    -- { "<leader>r",    group = "Replace" },
-    -- { "<leader>ra",   ":lua SubstituteAll()<CR>",                desc = "Whole File" },
-    -- { "<leader>rm",   ":lua SubstituteMatchingLines()<CR>",      desc = "Matching Lines" },
-    -- { "<leader>rr",   ":lua SubstituteRange()<CR>",              desc = "Range" },
-    -- { "<leader>re",   "<Cmd>NvimTreeRefresh<CR>",                desc = "Refresh Explorer" },
-    { '<leader>r',   group = 'Replace' },
-
-    -- Substitute operations
-    { '<leader>rs',  group = 'Substitute' },
-    { '<leader>rsa', ':lua SubstituteAll()<CR>',                desc = 'Whole File' },
-    { '<leader>rsm', ':lua SubstituteMatchingLines()<CR>',      desc = 'Matching Lines' },
-    { '<leader>rsr', ':lua SubstituteRange()<CR>',              desc = 'Range' },
-    { '<leader>rsl', ':s/',                                     desc = 'Current Line' },
-    { '<leader>rsv', ':s/\\%V',                                 desc = 'Visual Selection' },
-
-    -- Quick replace (no submenu)
-    { '<leader>rr',  ':lua SubstituteRange()<CR>',              desc = 'Replace Range' },
-    { '<leader>ra',  ':lua SubstituteAll()<CR>',                desc = 'Replace All' },
-
-    -- Refresh operations
-    { '<leader>re',  group = 'Refresh' },
-    { '<leader>ree', '<Cmd>NvimTreeRefresh<CR>',                desc = 'Explorer' },
-    { '<leader>reb', '<Cmd>edit!<CR>',                          desc = 'Buffer' },
-    { '<leader>res', '<Cmd>source %<CR>',                       desc = 'Source File' },
-
+    { "<leader>r",    group = "Reload/Substitute" },
+    { "<leader>rr",    group = "Reload" },
+    { "<leader>rs",    group = "Substitute" },
     -- ===============
     -- Sessions --> Refrence to /path/to/IdeBatch/Sessions.lua
     -- ===============
@@ -173,7 +147,6 @@ wk.add({
     -- ===============
     -- Visual Mode Group
     -- ===============
-    { '<leader>v',   group = 'Visual' },
     -- ===============
     -- Save
     -- ===============
@@ -189,7 +162,6 @@ wk.add({
     -- ===============
     -- Yank
     -- ===============
-    { '<leader>y',   group = 'Copy' },
     { '<leader>ya',  '<Cmd>%y+<CR>',                            desc = 'Yank All' },
     { '<leader>yp',  "<Cmd>let @+ = expand('%:p')<CR>",         desc = 'Yank File Path' },
     { '<leader>yf',  "<Cmd>let @+ = expand('%:t')<CR>",         desc = 'Yank File Name' },
