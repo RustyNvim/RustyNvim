@@ -89,7 +89,7 @@ npairs.add_rules({
 -- ============================================
 -- LOAD LANGUAGE-SPECIFIC RULES
 -- ============================================
-local ok, lang_rules = pcall(require, 'autopairs.language-rules')
+local ok, lang_rules = pcall(require, 'autopairs.autopair_rule')
 if ok then
     lang_rules.setup(npairs)
 else

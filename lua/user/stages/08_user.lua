@@ -1,6 +1,6 @@
 vim.defer_fn(function()
     require('autopairs.autopairs')
-    require('autopairs.autopair_rule')
+    -- require('autopairs.autopair_rule') -- already required in autopairs
 end, 200)
 
 vim.defer_fn(function ()
