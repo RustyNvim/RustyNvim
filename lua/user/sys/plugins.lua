@@ -23,11 +23,11 @@ require('lazy').setup({
         -- ===========================
         -- Plugin Managers (load early)
         -- ===========================
-        {
-            'williamboman/mason.nvim',
-            cmd = { 'Mason', 'MasonInstall', 'MasonUpdate' },
-            build = ':MasonUpdate',
-        },
+        -- {
+        --     'williamboman/mason.nvim',
+        --     cmd = { 'Mason', 'MasonInstall', 'MasonUpdate' },
+        --     build = ':MasonUpdate',
+        -- },
 
         -- ===========================
         -- Core Dependencies (lazy loaded)

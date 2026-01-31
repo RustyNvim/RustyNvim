@@ -58,7 +58,7 @@ require('blink.cmp').setup({
             enabled = true,
             min_width = 15,
             max_height = 10,
-            border = 'none',
+            border = 'rounded',
             scrollbar = true,
             scrolloff = 2,
             winblend = 0,
@@ -121,7 +121,7 @@ require('blink.cmp').setup({
         },
 
         documentation = {
-            auto_show = true,
+            auto_show = false,
             auto_show_delay_ms = 200,
             treesitter_highlighting = true,
 
