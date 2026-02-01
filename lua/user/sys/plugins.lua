@@ -85,6 +85,18 @@ require('lazy').setup({
             dependencies = { 'rmagatti/logger.nvim' },
             config = true,
         },
+        {
+            'folke/trouble.nvim',
+            opts = {}, -- for default options, refer to the configuration section for custom setup.
+            event = "BufReadPre",
+            keys = {
+                {
+                    '<leader>tt',
+                    '<cmd>Trouble diagnostics toggle<cr>',
+                    desc = 'Trouble Toggle',
+                },
+            },
+        },
 
         {
             {
@@ -279,10 +291,12 @@ require('lazy').setup({
             },
         },
         {
-            { 'akinsho/toggleterm.nvim',
+            {
+                'akinsho/toggleterm.nvim',
                 version = '*',
                 lazy = true,
-                config = true },
+                config = true
+            },
         },
 
         -- ===========================
@@ -313,12 +327,8 @@ require('lazy').setup({
             event = 'VeryLazy',
         },
         {
-            'kevinhwang91/nvim-ufo',
-            event = 'BufReadPost',
-            dependencies = { 'kevinhwang91/promise-async' },
-        },
-        {
             'nvzone/showkeys',
+            event = 'VeryLazy'
         },
 
         -- ===========================
@@ -360,9 +370,11 @@ require('lazy').setup({
         -- Mini.nvim Suite
         -- ===========================
         {
-            'echasnovski/mini.nvim',
-            version = '*',
-            event = 'VeryLazy',
+            'nvim-mini/mini.indentscope',
+            event = 'BufReadPost',
+        },
+        {
+            'nvim-mini/mini.notify',
         },
 
         {

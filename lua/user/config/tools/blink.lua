@@ -91,7 +91,7 @@ require('blink.cmp').setup({
                     },
 
                     label = {
-                        width = { fill = true, max = 40 },
+                        width = { fill = true, max = 20 },
                         text = function(ctx) return ctx.label .. ctx.label_detail end,
                         highlight = function(ctx)
                             local highlights = {
@@ -121,16 +121,16 @@ require('blink.cmp').setup({
         },
 
         documentation = {
-            auto_show = false,
+            auto_show = true,
             auto_show_delay_ms = 200,
             treesitter_highlighting = true,
 
             window = {
                 min_width = 10,
                 max_width = 40,
-                max_height = 20,
-                border = 'none',
-                winblend = 0,
+                max_height = 40,
+                border = 'rounded',
+                winblend = 25,
                 scrollbar = true,
 
                 direction_priority = {
